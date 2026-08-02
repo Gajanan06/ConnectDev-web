@@ -39,7 +39,7 @@ const EditProfile = () => {
       );
 
       dispatch(addUser(res.data.data));
-      navigate("/profile");
+      navigate("/profile/view");
 
     } catch (err) {
       setError(err.response?.data || "Something went wrong");

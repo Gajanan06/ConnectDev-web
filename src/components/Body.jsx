@@ -30,8 +30,16 @@ const Body = () => {
     };
 
     useEffect(() => {
-        fetchUser();
-    }, []);
+        if (
+            location.pathname === "/login" ||
+            location.pathname === "/signup"
+        ) {
+            return;
+        }
+        if (!userData) {
+            fetchUser();
+        }
+    }, [location.pathname]);
 
     return (
        <div className="min-h-screen bg-gray-200 flex flex-col">
