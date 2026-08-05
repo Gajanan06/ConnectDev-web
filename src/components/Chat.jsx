@@ -77,86 +77,127 @@ const Chat = () => {
 
 }, [userId, targetUserId]);
 
+
   return (
-    <div className="h-[calc(100vh-80px)] bg-gray-100 flex flex-col">
+  <div className="h-[calc(100vh-80px)] bg-gradient-to-br from-slate-50 via-white to-slate-100 flex flex-col">
 
-      {/* Header */}
+    <div className="sticky top-0 z-10 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
 
-      <div className="bg-white shadow px-6 py-4">
-        <div className="flex items-center gap-4">
+      <div className="max-w-5xl mx-auto px-5 py-4 flex items-center gap-4">
 
-          <img
-            src={targetUser?.profile}
-            alt=""
-            className="w-12 h-12 rounded-full"
-          />
+        <img
+          src={targetUser?.profile}
+          alt="Profile"
+          className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md"
+        />
 
-          <div>
+        <div>
 
-            <h2 className="font-bold text-lg">
-              {targetUser?.firstName} {targetUser?.lastName}
-            </h2>
+          <h2 className="text-lg font-bold text-slate-800">
+            {targetUser?.firstName} {targetUser?.lastName}
+          </h2>
 
-          </div>
-        </div>
-      </div>
+          <div className="flex items-center gap-2 mt-1">
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-5">
+            {/* <span className="w-2.5 h-2.5 rounded-full bg-green-500"></span> */}
 
-        {messages.map((message) => (
-
-          <div
-            key={message._id}
-            className={`flex ${
-              message.senderId._id === userId
-                ? "justify-end"
-                : "justify-start"
-            }`}>
-
-            <div
-              className={`px-5 py-3 rounded-2xl max-w-sm ${
-                message.senderId._id === userId
-                  ? "bg-blue-500 text-white"
-                  : "bg-white shadow"
-              }`}
-            >
-              {message.text}
-            </div>
+            {/* <span className="text-sm text-slate-500">
+              Online
+            </span> */}
 
           </div>
-
-        ))}
-
-      </div>
-
-      {/* Input */}
-
-      <div className="bg-white border-t">
-
-        <div className="max-w-5xl mx-auto flex gap-2">
-
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="Type a message..."
-            className="flex-1 border rounded-xl px-2 py-2 m-10 outline-none mb-25"
-          />
-
-          <button
-            onClick={handleSend}
-            className="bg-blue-500 mb-25 m-10 hover:bg-blue-600 text-white px-8 rounded-xl"
-          >
-            Send
-          </button>
 
         </div>
 
       </div>
 
     </div>
-  );
+
+    <div className="flex-1 overflow-y-auto px-4 py-6">
+      <div className="max-w-5xl mx-auto space-y-5">
+
+        {messages.length === 0 ? (
+
+          <div className="flex flex-col items-center justify-center h-full text-center mt-20">
+
+            <div className="text-6xl mb-4">
+              💬
+            </div>
+
+            <h2 className="text-2xl font-bold text-slate-700">
+              Start the Conversation
+            </h2>
+
+            <p className="mt-2 text-slate-500">
+              Say hello and begin chatting.
+            </p>
+
+          </div>
+
+        ) : (
+
+          messages.map((message) => (
+
+            <div
+              key={message._id}
+              className={`flex ${
+                message.senderId._id === userId
+                  ? "justify-end"
+                  : "justify-start"
+              }`}
+            >
+
+              <div
+                className={`px-5 py-3 rounded-[24px] max-w-xs sm:max-w-sm md:max-w-md break-words shadow-sm ${
+                  message.senderId._id === userId
+                    ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                    : "bg-white border border-slate-200 text-slate-800"
+                }`}
+              >
+
+                {message.text}
+
+              </div>
+
+            </div>
+
+          ))
+
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div className="bg-white border-t border-slate-200">
+
+      <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-3">
+
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
+          placeholder="Type a message..."
+          className="flex-1 rounded-full border border-slate-200 bg-slate-100 px-6 py-3 outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition"
+        />
+
+        <button
+          onClick={handleSend}
+          className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold px-8 py-3 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
+        >
+          💬 Send
+        </button>
+
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default Chat;

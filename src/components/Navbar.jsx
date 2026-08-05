@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
+import { FaHeart } from "react-icons/fa";
 
 
 const Navbar = () => {
@@ -63,83 +64,135 @@ const handleLogout = async () => {
 };
 
   return (
-    <nav className="bg-gray-800 shadow-md px-6 py-4">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        
-        <Link to="/feed" className="text-2xl font-bold text-orange-500">
-          devTinder
+  <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div className="flex items-center justify-between h-18">
+
+        <Link to="/feed" className="flex items-center gap-3 group">
+
+          <div className="w-11 h-11 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-105 transition-transform">
+            ❤️
+
+          </div>
+
+          <div>
+            <h1 className="text-2xl font-extrabold bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+              DevTinder
+            </h1>
+
+            <p className="text-xs text-slate-500 -mt-1">
+              Connect with Developers
+            </p>
+          </div>
+
         </Link>
 
         {user && (
-          <div ref={menuRef} className=" flex relative items-center gap-4">
-            <p className="text-white font-medium">Welcome, {user.firstName} </p>
-            
+          <div ref={menuRef} className="relative flex items-center gap-4">
+
+            <div className="hidden md:block text-right">
+
+              <p className="text-sm text-slate-500">
+                Welcome back
+              </p>
+
+              <h3 className="font-semibold text-slate-800">
+                {user.firstName}
+              </h3>
+            </div>
+
             <button
-  onClick={() => setShowMenu(!showMenu)}
-  className="w-10 h-10 rounded-full overflow-hidden"
->
-  <img
-    src={user.profile || "https://via.placeholder.com/150"}
-    alt="Profile"
-    className="w-full h-full object-cover cursor-pointer hover:scale-110 transition-transform duration-200"
-  />
-</button>
+              onClick={() => setShowMenu(!showMenu)}
+              className="relative"
+            >
 
-          {showMenu && (
-  <div className="absolute right-0 top-12 w-44 bg-white rounded-lg shadow-lg border">
-    
-    <ul className="py-2 text-sm text-gray-700">
+              <img
+                src={user.profile || "https://via.placeholder.com/150"}
+                alt="Profile"
+                className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md hover:scale-105 transition"
+              />
 
-      <li>
-        <Link
-          onClick={() => setShowMenu(false)}
-          to="/profile/view"
-          className="block px-4 py-2 hover:bg-gray-100"
-        >
-          Profile
-        </Link>
-      </li>
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-green-500 border-2 border-white"></span>
 
-      <li>
-        <Link
-          to="/requests"
-          onClick={() => setShowMenu(false)}
-          className="block px-4 py-2 hover:bg-gray-100"
-        >
-          Requests
-        </Link>
-      </li>
+            </button>
 
-      <li>
-  <Link
-    onClick={() => setShowMenu(false)}
-    to="/connections"
-    className="block px-4 py-2 hover:bg-gray-100"
-  >
-    Connections
-  </Link>
-</li>
+            {showMenu && (
+              <div className="absolute right-0 top-16 w-56 rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden">
 
-      <li>
-        <Link
-          className="block px-4 py-2 hover:bg-gray-100 text-red-500"
-          onClick={() => {
-            setShowMenu(false);
-            handleLogout();
-          }}
-        >
-          Logout
-        </Link>
-      </li>
+                <div className="px-5 py-4 border-b bg-slate-50">
 
-    </ul>
-  </div>
-)}
-        </div>
+                  <h3 className="font-bold text-slate-800">
+                    {user.firstName}
+                  </h3>
+
+                  <p className="text-xs text-slate-500">
+                    Developer Profile
+                  </p>
+
+                </div>
+
+                <ul className="py-2 text-sm">
+
+                  <li>
+
+                    <Link
+                      onClick={() => setShowMenu(false)}
+                      to="/profile/view"
+                      className="block px-5 py-3 hover:bg-slate-100 transition"
+                    >
+                      👤 My Profile
+                    </Link>
+
+                  </li>
+
+                  <li>
+
+                    <Link
+                      to="/requests"
+                      onClick={() => setShowMenu(false)}
+                      className="block px-5 py-3 hover:bg-slate-100 transition"
+                    >
+                      📩 Requests
+                    </Link>
+
+                  </li>
+
+                  <li>
+
+                    <Link
+                      onClick={() => setShowMenu(false)}
+                      to="/connections"
+                      className="block px-5 py-3 hover:bg-slate-100 transition"
+                    >
+                      🤝 Connections
+                    </Link>
+
+                  </li>
+
+                  <li className="border-t">
+
+                    <button
+                      onClick={() => {
+                        setShowMenu(false);
+                        handleLogout();
+                      }}
+                      className="w-full text-left px-5 py-3 text-red-500 hover:bg-red-50 transition"
+                    >
+                      🚪 Logout
+                    </button>
+
+                  </li>
+
+                </ul>
+              </div>
+            )}
+          </div>
+
         )}
-
       </div>
-    </nav>
+    </div>
+  </nav>
   );
 };
 

@@ -42,11 +42,11 @@ const Body = () => {
     }, [location.pathname]);
 
     return (
-       <div className="min-h-screen bg-gray-200 flex flex-col">
+           <div className="flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900">
 
          <Navbar />
 
-          <main className="flex-grow">
+          <main className="flex-1">
             <Outlet />
           </main>
 
