@@ -8,11 +8,11 @@ const Footer = () => {
         <div className="text-center md:text-left">
 
           <h3 className="text-lg font-bold bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
-            DevTinder
+            ConnectDev
           </h3>
 
           <p className="text-sm text-slate-500 mt-1">
-            © {new Date().getFullYear()} DevTinder. All rights reserved.
+            © {new Date().getFullYear()} ConnectDev. All rights reserved.
           </p>
 
         </div>

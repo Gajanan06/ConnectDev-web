@@ -78,7 +78,7 @@ const handleLogout = async () => {
 
           <div>
             <h1 className="text-2xl font-extrabold bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
-              DevTinder
+              ConnectDev
             </h1>
 
             <p className="text-xs text-slate-500 -mt-1">

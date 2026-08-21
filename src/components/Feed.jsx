@@ -101,7 +101,7 @@ const Feed = () => {
 
           <p className="mt-4 text-slate-500 max-w-2xl mx-auto leading-7">
 
-            Swipe through talented developers, build meaningful
+            Select through talented developers, build meaningful
             connections, and grow your professional network.
 
           </p>

@@ -80,7 +80,7 @@ const userRes = await axios.get(`${BASE_URL}/profile/view`,
         <div className="max-w-md">
 
           <span className="inline-flex items-center rounded-full bg-white/20 px-4 py-2 text-sm font-medium">
-            ❤️ Welcome to DevTinder
+            ❤️ Welcome to ConnectDev
           </span>
 
           <h1 className="mt-8 text-5xl font-extrabold leading-tight">
@@ -127,7 +127,7 @@ const userRes = await axios.get(`${BASE_URL}/profile/view`,
           </div>
 
           <h1 className="mt-5 text-4xl font-extrabold text-slate-900">
-            DevTinder
+            ConnectDev
           </h1>
 
           <p className="mt-3 text-slate-500">
